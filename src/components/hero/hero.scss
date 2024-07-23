@@ -1,0 +1,132 @@
+.hero {
+
+    &__swiper-img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+
+        @media (max-width: 800px) {
+            height: 500px;
+        }
+
+        @media (max-width: 600px) {
+            height: 400px;
+        }
+
+        @media (max-width: 500px) {
+            height: 300px;
+        }
+
+        @media (max-width: 400px) {
+            height: 200px;
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 50px;
+
+        h1 {
+            font-size: 72px;
+
+            span {
+                color: #6C7275;
+            }
+        }
+
+        p {
+            font-size: 20px;
+            color: #6C7275;
+            font-weight: 400;
+
+            span {
+                color: #000;
+                font-weight: 600;
+            }
+        }
+
+        @media (max-width: 1300px) {
+            h1 {
+                font-size: 62px;
+            }
+
+            p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 1140px) {
+            h1 {
+                font-size: 52px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 990px) {
+            h1 {
+                font-size: 42px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 730px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 730px) {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 20px;
+
+            h1 {
+                font-size: 42px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            gap: 10px;
+            h1 {
+                font-size: 32px;
+            }
+            p {
+                font-size: 10px;
+            }
+        }
+
+    }
+}
