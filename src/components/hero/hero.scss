@@ -118,11 +118,13 @@
             }
         }
 
-        @media (max-width: 350px) {
+        @media (max-width: 370px) {
             gap: 10px;
+
             h1 {
                 font-size: 32px;
             }
+
             p {
                 font-size: 10px;
             }

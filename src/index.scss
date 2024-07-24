@@ -23,6 +23,13 @@ button {
   margin: 0 auto;
 }
 
+.containerr {
+  width: 88%;
+  // max-width: 1440px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -31,10 +38,18 @@ button {
 .line-clamp {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  // -webkit-line-clamp: 1;
+  -webkit-line-clamp: 1;
   overflow: hidden;
 }
 
 .simple {
   margin-top: 80px;
+}
+
+.hundreds {
+  margin: 80px 0px;
+}
+
+.article {
+  margin-bottom: 80px;
 }

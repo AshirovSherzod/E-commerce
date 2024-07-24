@@ -1,0 +1,82 @@
+.review-customer {
+
+    &__top {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        h1 {
+            font-size: 28px;
+            font-weight: 500;
+        }
+
+        .stars {
+            display: flex;
+            flex-direction: row;
+
+            span {
+                margin-left: 20px;
+            }
+
+            img {
+                width: 1%;
+            }
+        }
+
+        form {
+
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            border: 1px solid #d5d5d5;
+            border-radius: 15px;
+
+            input {
+                display: flex;
+                flex: 1;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                padding-left: 20px;
+            }
+
+            button {
+                width: 120px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 20px;
+                margin-top: .6%;
+                border: 1px solid transparent;
+                border-radius: 15px;
+                right: 20px;
+                background-color: #000;
+                color: #fff;
+            }
+        }
+    }
+
+    &__comment {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 40px 0px;
+        border-bottom: 1px solid #d5d5d5;
+
+        &__title {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            h1 {
+                font-weight: 500;
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    }
+}

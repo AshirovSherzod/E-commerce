@@ -8,12 +8,23 @@ import { CgShoppingBag } from 'react-icons/cg'
 import { RiSearchLine } from 'react-icons/ri'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { IoClose } from 'react-icons/io5'
+import { useGetProductsQuery } from '../../../context/api/productApi'
+
+const initialState = {
+    search: ""
+}
 
 
 const Header = () => {
 
     const [showSidebar, setShowSidebar] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
+    const [search, setSearch] = useState("")
+    const { data, isLoading } = useGetProductsQuery({ search: search })
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
     return (
         <>
 
@@ -39,8 +50,9 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="nav__bottom">
-                        <form action="">
-                            <button><RiSearchLine /></button>
+                        <form className='nav__bottom-form' onSubmit={handleSubmit} action="">
+                            <input className={`nav__bottom-form__input ${showSearch ? "nav__bottom-form__show" : ""}`} value={search} onChange={(e) => setSearch(e.target.value)} name='search' type="text" placeholder='Search' />
+                            <button type='button' onClick={() => setShowSearch(prev => !prev)}><RiSearchLine /></button>
                         </form>
                         <NavLink to={"/admin"}><MdOutlineAccountCircle /></NavLink>
                         <NavLink to={"/cart"}><CgShoppingBag /></NavLink>
