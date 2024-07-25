@@ -2,24 +2,28 @@
 
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    gap: 50px;
+
+    &__top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     &__cards {
-        display: flex;
-        // flex-direction: row;
-        gap: 10px;
-        overflow: auto;
-        // width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
 
     }
 
     &__card {
-        min-width: 250px;
-        background-color: red;
-        // width: 350px;
-        // height: 400px;
-        // flex-direction: row;
-        gap: 10px;
+        // width: 250px;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        gap: 15px;
     }
 
     &__card-img {
@@ -52,7 +56,24 @@
         }
 
         &__rating-img {
-            width: 7%;
+            width: 5%;
+        }
+
+        &__price {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+
+            p:first-child {
+                font-size: 14px;
+            }
+
+            p:last-child {
+                font-size: 14px;
+                color: #6C7275;
+                text-decoration: line-through;
+            }
         }
     }
 

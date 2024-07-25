@@ -37,6 +37,20 @@ button {
   overflow: hidden;
 }
 
+.line-clamp2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.line-clamp3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 .simple {
   margin-top: 80px;
 }
@@ -47,4 +61,8 @@ button {
 
 .article {
   margin-bottom: 80px;
+}
+
+.products {
+  margin-top: 80px;
 }

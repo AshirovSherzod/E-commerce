@@ -8,7 +8,7 @@ import Article from '../../components/article/Article'
 
 const Home = () => {
 
-  const { data, isLoading, isSuccess } = useGetProductsQuery()
+  const { data, isLoading, isSuccess } = useGetProductsQuery({limit: 8, page: 1})
 
   return (
     <main>

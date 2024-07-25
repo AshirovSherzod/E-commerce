@@ -58,9 +58,9 @@ const Details = () => {
         <div className="details__product-img">
           <img className='first' src={data?.images[index]} alt="images" />
           <div className="details__product-img__images">
-            <img onClick={() => setIndex(0)} src={data?.images[0]} alt="images" />
-            <img onClick={() => setIndex(1)} src={data?.images[1]} alt="images" />
-            <img onClick={() => setIndex(2)} src={data?.images[2]} alt="images" />
+            <img className={`${index === 0 ? "details__product-img__images-img" : ""}`} onClick={() => setIndex(0)} src={data?.images[0]} alt="images" />
+            <img className={`${index === 1 ? "details__product-img__images-img" : ""}`} onClick={() => setIndex(1)} src={data?.images[1]} alt="images" />
+            <img className={`${index === 2 ? "details__product-img__images-img" : ""}`} onClick={() => setIndex(2)} src={data?.images[2]} alt="images" />
           </div>
         </div>
         <div className="details__product-details">
@@ -80,14 +80,7 @@ const Details = () => {
             </div>
           </div>
           <div className="details__product-details__btns">
-            <div className="details__product-details__btns-btns">
-              <div className="details__product-details__btns-btns__counter">
-                <button><FaMinus /></button>
-                <p>0</p>
-                <button><FaPlus /></button>
-              </div>
-              <button className='details__product-details__btns-btns__wishlist'><GoHeart /> Wishlist</button>
-            </div>
+            <button className='details__product-details__btns-wishlist'><GoHeart /> Wishlist</button>
             <button className='details__product-details__btns-addtocart'>Add to Cart</button>
           </div>
         </div>
@@ -122,4 +115,9 @@ const Details = () => {
 
 export default Details
 
-{/* <GoHeartFill /> */ } 
+{/* <GoHeartFill /> */ }
+{/* <div className="details__product-details__btns__counter">
+                  <button><FaMinus /></button>
+                  <p>0</p>
+                  <button><FaPlus /></button>
+                </div> */}

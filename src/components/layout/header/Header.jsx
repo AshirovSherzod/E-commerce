@@ -32,8 +32,8 @@ const Header = () => {
                 <p>30% off storewide — Limited time!</p>
                 <Link to={"#"}>Shop Now <GoArrowRight /></Link>
             </div>
-            <header className='header'>
-                <nav className='nav container'>
+            <header className='header container'>
+                <nav className='nav '>
                     <div className="nav__logo">
                         <button onClick={() => setShowSidebar(true)} className="nav__logo-burger"><RxHamburgerMenu /></button>
                         <h1><Link to={"/"}>3legant</Link></h1>
