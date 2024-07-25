@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetProductByIdQuery } from '../../context/api/productApi'
 import { FaMinus, FaPlus } from 'react-icons/fa'
@@ -12,6 +12,10 @@ import { COMMENTS_DATA } from '../../static'
 import ReviewCustomer from '../../components/reviewCustomer/ReviewCustomer'
 
 const Details = () => {
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
 
   const { id } = useParams()
   const { data, isLoading } = useGetProductByIdQuery(id)

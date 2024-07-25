@@ -18,17 +18,12 @@ button {
 }
 
 .container {
-  width: 85%;
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1152px;
+  padding: 0 16px;
+  margin: 0  auto;
 }
 
-.containerr {
-  width: 88%;
-  // max-width: 1440px;
-  margin-left: auto;
-  margin-right: 0;
-}
 
 .row {
   display: flex;
