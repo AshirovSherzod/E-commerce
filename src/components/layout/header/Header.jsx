@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import './header.scss'
 import { Link, NavLink } from 'react-router-dom'
-import { GoArrowRight } from 'react-icons/go'
+import { GoArrowRight, GoHeart } from 'react-icons/go'
 import { MdKeyboardArrowRight, MdOutlineAccountCircle } from 'react-icons/md'
 import { CgShoppingBag } from 'react-icons/cg'
 import { RiSearchLine } from 'react-icons/ri'
@@ -56,6 +56,7 @@ const Header = () => {
                         </form>
                         <NavLink to={"/admin"}><MdOutlineAccountCircle /></NavLink>
                         <NavLink to={"/cart"}><CgShoppingBag /></NavLink>
+                        <NavLink to={"/wishlist"}><GoHeart /></NavLink>
                     </div>
                 </nav>
                 {

@@ -11,6 +11,7 @@ import Auth from "./pages/auth/Auth"
 import Admin from "./pages/admin/Admin"
 import Header from "./components/layout/header/Header"
 import Footer from "./components/layout/footer/Footer"
+import Wishlist from "./pages/wishlist/Wishlist"
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/details/:id" element={<Details />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/cart" element={<Auth />}>
           <Route path="admin" element={<Admin />} />

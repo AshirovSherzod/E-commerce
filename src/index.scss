@@ -21,7 +21,7 @@ button {
   width: 100%;
   max-width: 1152px;
   padding: 0 16px;
-  margin: 0  auto;
+  margin: 0 auto;
 }
 
 
@@ -55,9 +55,6 @@ button {
   margin-top: 80px;
 }
 
-.hundreds {
-  margin: 80px 0px;
-}
 
 .article {
   margin-bottom: 80px;
@@ -65,4 +62,18 @@ button {
 
 .products {
   margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.hundreds {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.cart {
+  margin: 50px auto;
+}
+
+.blog__top {
+  margin: 50px 0px;
 }

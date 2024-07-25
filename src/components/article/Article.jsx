@@ -2,18 +2,27 @@ import React, { memo } from 'react'
 
 import './article.scss'
 import { BsArrowRight } from 'react-icons/bs'
-import one from '../../assets/images/article/1.png'
-import two from '../../assets/images/article/2.png'
-import three from '../../assets/images/article/3.png'
+import { useLocation } from 'react-router-dom'
 
 
-const Article = () => {
+
+
+const Article = ({ one, two, three }) => {
+
+    let { pathname } = useLocation()
     return (
-        <section className='article container'>
-            <div className="article__top">
-                <h1>Article</h1>
-                <button>More Article <BsArrowRight /></button>
-            </div>
+        <section className='article'>
+            {
+                pathname.includes("/blog")
+                    ?
+                    <></>
+                    :
+                    <div className="article__top">
+                        <h1>Article</h1>
+                        <button>More Article <BsArrowRight /></button>
+                    </div>
+
+            }
             <div className="article__cards">
                 <div className="article__card">
                     <div className="article__card-img">

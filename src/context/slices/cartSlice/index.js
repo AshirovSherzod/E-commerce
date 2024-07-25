@@ -18,9 +18,7 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.value));
     },
     removeFromCart: (state, action) => {
-      if (confirm("Are you sure")) {
-        state.value = state.value.filter((i) => i.id !== action.payload);
-      }
+      state.value = state.value.filter((i) => i.id !== action.payload);
       localStorage.setItem("cart", JSON.stringify(state.value));
     },
     decrementCart: (state, action) => {

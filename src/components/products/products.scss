@@ -2,77 +2,187 @@
 
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
+    // background-color: red;
 
     &__top {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
+        p {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #000;
+        }
+
+        @media (max-width: 460px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            h1 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
     }
 
     &__cards {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 20px;
+        // background-color: red;
 
+        @media (max-width: 800px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 620px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 410px) {
+            grid-gap: 10px;
+        }
     }
 
     &__card {
-        // width: 250px;
+        height: 400px;
         display: flex;
         flex-direction: column;
-        background-color: #fff;
-        gap: 15px;
-    }
+        // background-color: red;
+        gap: 10px;
 
-    &__card-img {
-        width: 100%;
-        height: 240px;
-        position: relative;
-
-        img {
+        &__img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: 280px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+
+            a img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .heart,
+            .addtocart {
+                position: absolute;
+            }
+
+            .heart {
+                top: 10px;
+                right: -100%;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                border: 1px solid #6C7275;
+                border-radius: 50%;
+                color: #6C7275;
+                background-color: #fff;
+                transition: .3s;
+
+            }
+
+            .addtocart {
+                bottom: -100%;
+                left: 50%;
+                right: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 14px;
+                color: #fff;
+                background-color: #000;
+                border: 1px solid transparent;
+                border-radius: 10px;
+                transition: .3s;
+
+            }
         }
 
-        &__btns {
-            position: absolute;
-            top: 0;
-            left: 0;
+        &__img:hover {
+
+            .heart {
+                right: 10px;
+                transition: .3s;
+
+            }
+
+            .addtocart {
+                bottom: 0px;
+                left: 50%;
+                right: 50%;
+                transform: translate(-50%, -50%);
+                transition: .3s;
+            }
         }
-    }
 
-
-    &__card-title {
-        display: flex;
-        flex-direction: column;
-
-        &__rating {
+        &__title {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             gap: 5px;
         }
 
-        &__rating-img {
-            width: 5%;
-        }
-
-        &__price {
+        &__title-price {
             display: flex;
             flex-direction: row;
-            align-items: center;
             gap: 10px;
 
-            p:first-child {
-                font-size: 14px;
-            }
-
             p:last-child {
-                font-size: 14px;
                 color: #6C7275;
                 text-decoration: line-through;
+            }
+        }
+
+        @media (max-width: 1010px) {
+            height: 300px;
+
+            &__img {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 410px) {
+
+            height: 250px;
+
+            &__img {
+                height: 180px;
+            }
+
+            &__title {
+                gap: 2px;
+
+                h3 {
+                    font-size: 16px;
+                }
+
+                p {
+                    font-size: 14px;
+                }
             }
         }
     }
@@ -150,4 +260,5 @@
             }
         }
     }
+
 }

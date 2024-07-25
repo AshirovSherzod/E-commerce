@@ -1,45 +1,62 @@
 import React from 'react'
-import { BsCartCheck } from 'react-icons/bs'
-import { GoHeart } from 'react-icons/go'
+import { BsCartCheck, BsCartCheckFill } from 'react-icons/bs'
+import { GoHeart, GoHeartFill } from 'react-icons/go'
 // import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io';
 
 import './products.scss'
-import regular from '../../assets/icons/star-regular.svg'
-import half from '../../assets/icons/star-half.svg'
-import solid from '../../assets/icons/star-solid.svg'
 import { Link } from 'react-router-dom'
+import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../../context/slices/cartSlice'
+import { like } from '../../context/slices/wishlistSlice'
 
 
 const ProductsItem = ({ data }) => {
+
+    const wishlistData = useSelector(state => state.wishlist.value)
+    const cartData = useSelector(state => state.cart.value)
+
+    console.log(wishlistData);
+    const dispatch = useDispatch()
+
     const getRating = (rating) => {
         let res = [];
         for (let i = 0; i < Math.trunc(rating); i++) {
-            res.push(<img className='products__card-title__rating-img' src={solid} alt="" />);
+            res.push(<IoMdStar />);
         }
         if (rating % 1 > 0.4) {
-            res.push(<img className='products__card-title__rating-img' src={half} alt="" />);
+            res.push(<IoMdStarHalf />);
         }
         for (let i = Math.round(rating); i < 5; i++) {
-            res.push(<img className='products__card-title__rating-img' src={regular} alt="" />);
+            res.push(<IoMdStarOutline />)
         }
         return res;
     };
 
     return (
         <div className='products__card'>
-            <div className="products__card-img">
+            <div className="products__card__img">
                 <Link to={`details/${data.id}`}>
-                    <img src={data.images[1]} alt="" />
+                    <img src={data.images[0]} alt="" />
                 </Link>
-                <div className="products__card-img__btns">
-                    <button><GoHeart /></button>
-                    <button><span><BsCartCheck /></span> Add to Card</button>
-                </div>
+                <button onClick={() => dispatch(like(data))} className='heart'>
+                    {wishlistData.some((el) => el.id === data.id) ? (
+                        <GoHeartFill color="crimson" />
+                    ) : (
+                        <GoHeart />
+                    )}
+                </button>
+                <button onClick={() => dispatch(addToCart(data))} className='addtocart'>
+                    {cartData.some((el) => el.id === data.id) ? (
+                       <> <BsCartCheckFill /> Add to Card</>
+                    ) : (
+                        <><BsCartCheck /> Add to Card</>
+                    )}</button>
             </div>
-            <div className="products__card-title">
-                <p className='products__card-title__rating'>{getRating(data.rating)}</p>
+            <div className="products__card__title">
+                <p className='products__card__title-rating'>{getRating(data.rating)}</p>
                 <h3 title={data.title} className='line-clamp'>{data.title}</h3>
-                <div className="products__card-title__price">
+                <div className="products__card__title-price">
                     <p>${data.price}</p>
                     <p>${data.oldPrice}</p>
                 </div>
@@ -50,6 +67,3 @@ const ProductsItem = ({ data }) => {
 }
 
 export default ProductsItem
-
-{/* <BsCartCheckFill /> */ }
-{/* <GoHeartFill /> */ }
