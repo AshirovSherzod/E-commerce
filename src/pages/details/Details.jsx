@@ -5,11 +5,8 @@ import { FaMinus, FaPlus } from 'react-icons/fa'
 import { GoHeart } from 'react-icons/go'
 
 import './details.scss'
-import regular from '../../assets/icons/star-regular.svg'
-import half from '../../assets/icons/star-half.svg'
-import solid from '../../assets/icons/star-solid.svg'
-import { COMMENTS_DATA } from '../../static'
 import ReviewCustomer from '../../components/reviewCustomer/ReviewCustomer'
+import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io'
 
 const Details = () => {
 
@@ -25,13 +22,13 @@ const Details = () => {
   const getRating = (rating) => {
     let res = [];
     for (let i = 0; i < Math.trunc(rating); i++) {
-      res.push(<img className='products__card-title__rating-img' src={solid} alt="" />);
+      res.push(<IoMdStar />);
     }
     if (rating % 1 > 0.4) {
-      res.push(<img className='products__card-title__rating-img' src={half} alt="" />);
+      res.push(<IoMdStarHalf />);
     }
     for (let i = Math.round(rating); i < 5; i++) {
-      res.push(<img className='products__card-title__rating-img' src={regular} alt="" />);
+      res.push(<IoMdStarOutline />);
     }
     return res;
   };
