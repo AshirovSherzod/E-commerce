@@ -18,7 +18,7 @@ const Products = ({ data, isLoading, isSuccess }) => {
     return (
         <div className='products container'>
             {
-                pathname.includes("/wishlist")
+                pathname.includes("/wishlist") || pathname.includes("/shop")
                     ?
                     <></>
                     :
@@ -31,7 +31,7 @@ const Products = ({ data, isLoading, isSuccess }) => {
                 {products}
             </div>
             {
-                pathname.includes("/wishlist")
+                pathname.includes("/wishlist") || pathname.includes("/shop")
                     ?
                     <></>
                     :

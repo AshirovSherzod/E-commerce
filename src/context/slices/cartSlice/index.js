@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: JSON.parse(localStorage.getItem("cart")) || [],
+  checked: false
 };
 
 const cartSlice = createSlice({
@@ -34,9 +35,12 @@ const cartSlice = createSlice({
       state.value = [];
       localStorage.removeItem("cart");
     },
+    isChecked: (state, action) => {
+      state.checked = action.payload
+    },
   },
 });
 
-export const { addToCart, removeFromCart, decrementCart, deleteAllCart } =
+export const { addToCart, removeFromCart, decrementCart, deleteAllCart, isChecked } =
   cartSlice.actions;
 export default cartSlice.reducer;

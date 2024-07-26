@@ -16,7 +16,7 @@ const ProductsItem = ({ data }) => {
     const wishlistData = useSelector(state => state.wishlist.value)
     const cartData = useSelector(state => state.cart.value)
 
-    console.log(wishlistData);
+
     const dispatch = useDispatch()
 
     const getRating = (rating) => {

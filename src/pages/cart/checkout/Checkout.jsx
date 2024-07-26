@@ -1,12 +1,37 @@
 import React from 'react'
 
 import './cheackout.scss'
+import { useNavigate, useOutletContext } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { isChecked } from '../../../context/slices/cartSlice'
 
-const Checkout = ({ data, setAbtab }) => {
+const Checkout = () => {
+
+  let navigate = useNavigate()
+  let dispatch = useDispatch()
+  let { data } = useOutletContext()
+
+
+  let cards = data.map(product => (
+    <div className="checkout__right-card">
+      <div className="checkout__right-card__img">
+        <img src={product?.images[0]} alt="" />
+      </div>
+      <div className="checkout__right-card__content">
+        <div className="checkout__right-card__content-title">
+          <h3 title={product.title} className='line-clamp'>{product?.title}</h3>
+          <button>Counter</button>
+        </div>
+        <p>${product.price}</p>
+      </div>
+    </div>
+  ))
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setAbtab(3)
+    dispatch(isChecked(true))
+    navigate("/cart/orderComplete")
+    // setAbtab(3)
   }
 
   return (
@@ -40,11 +65,10 @@ const Checkout = ({ data, setAbtab }) => {
               <label htmlFor="">STREET ADDRESS *</label>
               <input type="text" placeholder='Street address' required />
             </div>
-            <select placeholder="Country" className='checkout__left-address__input' name="Country" id="">
-              <option value="">Country</option>
-              <option value="">Country</option>
-              <option value="">Country</option>
-            </select>
+            <div className="checkout__left-address__input">
+              <label htmlFor="">Country</label>
+              <input type="text" placeholder='Country address' required />
+            </div>
             <div className="checkout__left-address__input">
               <label htmlFor="">TOWN/CITY</label>
               <input type="text" placeholder='Town/City' />
@@ -68,8 +92,13 @@ const Checkout = ({ data, setAbtab }) => {
           <button>Place Order</button>
         </form>
       </div>
-      <div className="cheackout__right">
-        <h1>salom</h1>
+      <div className="checkout__right">
+        <h1>Order Summary</h1>
+        {cards}
+        <form action="">
+          <input type="text" placeholder='Input' />
+          <button>Apply</button>
+        </form>
       </div>
     </div>
   )

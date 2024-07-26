@@ -3,11 +3,15 @@ import { IoClose } from 'react-icons/io5'
 
 import './shoppingCart.scss'
 import { useDispatch } from 'react-redux'
-import { removeFromCart } from '../../context/slices/cartSlice'
+import { removeFromCart } from '../../../context/slices/cartSlice'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 
-const ShoppingCart = ({ data, setAbtab }) => {
+const ShoppingCart = () => {
 
     let dispatch = useDispatch()
+    let navigate = useNavigate()
+    let { data } = useOutletContext()
+
 
     let carts = data.map(el => (
         <tr>
@@ -69,7 +73,11 @@ const ShoppingCart = ({ data, setAbtab }) => {
                     <p>Subtotal <span>$1234.0</span></p>
                     <h3>Total <span>$1234.0</span></h3>
                 </div>
-                <button className='checkoutt' onClick={() => setAbtab(2)}>Checkout</button>
+                <button className='checkoutt' onClick={() => {
+                    // setAbtab(2)
+                    // localStorage.setItem("abtab", JSON.stringify(2))
+                    navigate("/cart/checkout")
+                }}>Checkout</button>
             </div>
 
         </div>

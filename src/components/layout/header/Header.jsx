@@ -55,7 +55,7 @@ const Header = () => {
                             <button type='button' onClick={() => setShowSearch(prev => !prev)}><RiSearchLine /></button>
                         </form>
                         <NavLink to={"/admin"}><MdOutlineAccountCircle /></NavLink>
-                        <NavLink to={"/cart"}><CgShoppingBag /></NavLink>
+                        <NavLink to={"/cart/shopping"}><CgShoppingBag /></NavLink>
                         <NavLink to={"/wishlist"}><GoHeart /></NavLink>
                     </div>
                 </nav>

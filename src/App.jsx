@@ -12,6 +12,9 @@ import Admin from "./pages/admin/Admin"
 import Header from "./components/layout/header/Header"
 import Footer from "./components/layout/footer/Footer"
 import Wishlist from "./pages/wishlist/Wishlist"
+import ShoppingCart from "./pages/cart/shoppingCart/ShoppingCart"
+import Checkout from "./pages/cart/checkout/Checkout"
+import OrderComplete from "./pages/cart/orderComplete/OrderComplete"
 
 
 function App() {
@@ -27,9 +30,12 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/cart" element={<Auth />}>
-          <Route path="admin" element={<Admin />} />
+        <Route path="/cart" element={<Cart />}>
+          <Route path="shopping" element={<ShoppingCart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="orderComplete" element={<OrderComplete />} />
         </Route>
+        <Route path="admin" element={<Admin />} />
       </Routes>
       <Footer />
     </>
