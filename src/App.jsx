@@ -15,6 +15,9 @@ import Wishlist from "./pages/wishlist/Wishlist"
 import ShoppingCart from "./pages/cart/shoppingCart/ShoppingCart"
 import Checkout from "./pages/cart/checkout/Checkout"
 import OrderComplete from "./pages/cart/orderComplete/OrderComplete"
+import SignIn from "./pages/sign-in/SignIn"
+import ManageProducts from "./pages/admin/manageProducts/ManageProducts"
+import MangaeCategory from "./pages/admin/manageCategory/MangaeCategory"
 
 
 function App() {
@@ -30,12 +33,19 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/sign-in" element={<SignIn />} />
         <Route path="/cart" element={<Cart />}>
           <Route path="shopping" element={<ShoppingCart />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="orderComplete" element={<OrderComplete />} />
         </Route>
-        <Route path="admin" element={<Admin />} />
+        <Route path="/" element={<Auth />}>
+          <Route path="admin" element={<Admin />}>
+            <Route path="manageProducts" element={<ManageProducts />} />
+            <Route path="manageCategory" element={<MangaeCategory />} />
+          </Route>
+        </Route>
       </Routes>
       <Footer />
     </>

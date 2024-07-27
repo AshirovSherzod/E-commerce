@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Hero from '../../components/hero/Hero'
 import Simple from '../../components/simple/Simple'
 import { useGetProductsQuery } from '../../context/api/productApi'
@@ -11,13 +11,14 @@ import img3 from '../../assets/images/article/3.png'
 
 const Home = () => {
 
-  const { data, isLoading, isSuccess } = useGetProductsQuery({ limit: 8, page: 1 })
+  const [limit, setLimit] = useState(8)
+  const { data, isLoading, isSuccess } = useGetProductsQuery({ limit: limit, page: 1 })
 
   return (
     <main>
       <Hero />
       <Simple />
-      <Products data={data} isLoading={isLoading} isSuccess={isLoading} />
+      <Products data={data} isLoading={isLoading} isSuccess={isSuccess} limit={limit} />
       <Hundreds />
       <section className='container'>
         <Article one={img1} two={img2} three={img3} />

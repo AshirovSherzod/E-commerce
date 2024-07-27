@@ -9,6 +9,10 @@
         align-items: center;
         justify-content: center;
         gap: 20px;
+
+        @media (max-width: 690px) {
+            gap: 10px;
+        }
     }
 
     &__header-tabs {
@@ -16,6 +20,10 @@
         flex-direction: row;
         align-items: center;
         gap: 50px;
+
+        @media (max-width: 435px) {
+            overflow: auto;
+        }
 
         &__one,
         &__two,
@@ -38,7 +46,7 @@
         &__three.active {
 
             border-bottom: 2px solid #000;
-            
+
             h2 {
                 color: #000;
             }
@@ -80,6 +88,59 @@
         &__two-icon.done,
         &__three-icon.done {
             background-color: #38CB89;
+        }
+
+        @media (max-width: 690px) {
+            gap: 20px;
+
+            &__one,
+            &__two,
+            &__three {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding-bottom: 5px;
+                gap: 5px;
+
+                h2 {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #B1B5C3;
+                }
+            }
+
+            &__one-icon,
+            &__two-icon,
+            &__three-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+                border-radius: 50%;
+            }
+        }
+
+        @media (max-width: 530px) {
+            gap: 10px;
+
+            &__one,
+            &__two,
+            &__three {
+                padding-bottom: 5px;
+                gap: 5px;
+
+                h2 {
+                    font-size: 12px;
+                }
+            }
+
+            &__one-icon,
+            &__two-icon,
+            &__three-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 14px;
+                border-radius: 50%;
+            }
         }
 
     }

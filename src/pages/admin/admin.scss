@@ -1,0 +1,8 @@
+.admin {
+    display: flex;
+    // flex-direction: row;
+
+    &__content {
+        margin-left: 320px;
+    }
+}

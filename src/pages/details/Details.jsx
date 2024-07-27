@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetProductByIdQuery } from '../../context/api/productApi'
 import { FaMinus, FaPlus } from 'react-icons/fa'
-import { GoHeart } from 'react-icons/go'
+import { GoHeart, GoHeartFill } from 'react-icons/go'
 
 import './details.scss'
 import ReviewCustomer from '../../components/reviewCustomer/ReviewCustomer'
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from 'react-icons/io'
+import { useDispatch, useSelector } from 'react-redux'
+import { like } from '../../context/slices/wishlistSlice'
+import { addToCart } from '../../context/slices/cartSlice'
+import { BsCartCheck, BsCartCheckFill } from 'react-icons/bs'
 
 const Details = () => {
 
@@ -18,6 +22,12 @@ const Details = () => {
   const { data, isLoading } = useGetProductByIdQuery(id)
   const [index, setIndex] = useState(0)
   const [abtab, setAbtab] = useState(3)
+  const wishlistData = useSelector(state => state.wishlist.value)
+  const cartData = useSelector(state => state.cart.value)
+
+
+
+  const dispatch = useDispatch()
 
   const getRating = (rating) => {
     let res = [];
@@ -49,39 +59,78 @@ const Details = () => {
 
   </div>
 
+  let count = 1
+  let images = data?.images.map((img, inx) => (
+    // console.log(img)
+    <img className={`${inx === index ? "details__product-img__images-img" : ""}`} onClick={() => setIndex(inx)} src={img} alt="images" />
+  ))
+  console.log(index)
+  // 
+
+
+
   return (
     <main className='details container'>
-      <div className="details__product">
-        <div className="details__product-img">
-          <img className='first' src={data?.images[index]} alt="images" />
-          <div className="details__product-img__images">
-            <img className={`${index === 0 ? "details__product-img__images-img" : ""}`} onClick={() => setIndex(0)} src={data?.images[0]} alt="images" />
-            <img className={`${index === 1 ? "details__product-img__images-img" : ""}`} onClick={() => setIndex(1)} src={data?.images[1]} alt="images" />
-            <img className={`${index === 2 ? "details__product-img__images-img" : ""}`} onClick={() => setIndex(2)} src={data?.images[2]} alt="images" />
-          </div>
-        </div>
-        <div className="details__product-details">
-          <div className="details__product-details__title">
-            <p className='rating'>{getRating(data?.rating)}</p>
-            <h1>{data?.title}</h1>
-            <p className='desc'>{data?.description}</p>
-            <div className="details__product-details__title-price">
-              <p>${data?.price}</p>
-              <p>${data?.oldPrice}</p>
+      {
+        isLoading
+          ?
+          <div className="details__loading">
+            <div className="details__loading-img">
+              <div className="first"></div>
+              <div className="details__loading-img__images">
+                <div className="details__loading-img__images1"></div>
+                <div className="details__loading-img__images1"></div>
+                <div className="details__loading-img__images1"></div>
+              </div>
+            </div>
+            <div className="details__loading-details">
+              <div className="details__loading-details__div"></div>
+              <div className="details__loading-details__div"></div>
+              <div className="details__loading-details__div"></div>
+              <div className="details__loading-details__div"></div>
+              <div className="details__loading-details__div"></div>
             </div>
           </div>
-          <div className="details__product-details__date">
-            <p>Offer expires in:</p>
-            <div className="details__product-details-date__date">
+          :
+          <div className="details__product">
+            <div className="details__product-img">
+              <img className='first' src={data?.images[index]} alt="images" />
+              <div className="details__product-img__images">
+                {images}
+              </div>
+            </div>
+            <div className="details__product-details">
+              <div className="details__product-details__title">
+                <p className='rating'>{getRating(data?.rating)}</p>
+                <h1>{data?.title}</h1>
+                <p className='desc'>{data?.description}</p>
+                <div className="details__product-details__title-price">
+                  <p>${data?.price}</p>
+                  <p>${data?.oldPrice}</p>
+                </div>
+              </div>
+              <div className="details__product-details__btns">
+                <button onClick={() => dispatch(like(data ? data : ""))} className='details__product-details__btns-wishlist'>
+                  {
+                    wishlistData.some((el) => el.id === data?.id) ? (
+                      <GoHeartFill color="crimson" />
+                    ) : (
+                      <GoHeart />
+                    )
+                  }
+                  Wishlist</button>
+                <button onClick={() => dispatch(addToCart(data ? data : ""))} className='details__product-details__btns-addtocart'>
+                  {cartData.some((el) => el.id === data?.id) ? (
+                    <> <BsCartCheckFill /> Add to Card</>
+                  ) : (
+                    <><BsCartCheck /> Add to Card</>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
 
-            </div>
-          </div>
-          <div className="details__product-details__btns">
-            <button className='details__product-details__btns-wishlist'><GoHeart /> Wishlist</button>
-            <button className='details__product-details__btns-addtocart'>Add to Cart</button>
-          </div>
-        </div>
-      </div>
+      }
       <div className="details__comments">
         <div className="details__comments-header">
           <button className={`details__comments-header__one ${abtab === 1 ? "details__comments-header__one-show" : ""}`} onClick={() => setAbtab(1)}>Additional Info</button>

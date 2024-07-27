@@ -2,6 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Products from '../../components/products/Products'
 import Empty from '../../components/empty/Empty'
+import img from '../../assets/images/wishlist.webp'
+
 
 const Wishlist = () => {
 
@@ -16,7 +18,7 @@ const Wishlist = () => {
                     ?
                     <Products data={wishlistData} />
                     :
-                    <Empty title={title} />
+                    <Empty img={img} />
             }
         </main>
     )

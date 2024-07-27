@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './header.scss'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { GoArrowRight, GoHeart } from 'react-icons/go'
 import { MdKeyboardArrowRight, MdOutlineAccountCircle } from 'react-icons/md'
 import { CgShoppingBag } from 'react-icons/cg'
@@ -21,13 +21,18 @@ const Header = () => {
     const [showSearch, setShowSearch] = useState(false)
     const [search, setSearch] = useState("")
     const { data, isLoading } = useGetProductsQuery({ search: search })
+    let { pathname } = useLocation()
+    let navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
     }
+
+    if (pathname.includes("/sign-in")) return <></>
+    if (pathname.includes("/admin")) return <></>
+
     return (
         <>
-
             <div className='sub-header'>
                 <p>30% off storewide — Limited time!</p>
                 <Link to={"#"}>Shop Now <GoArrowRight /></Link>
@@ -41,28 +46,60 @@ const Header = () => {
                     <div className="nav__middle">
                         <div className={`nav__middle-links ${showSidebar ? "nav__middle-links__show" : ""}`}>
                             {
-                                showSidebar ? <button onClick={() => setShowSidebar(false)}><IoClose /></button> : <></>
+                                showSidebar
+                                    ?
+                                    <div className="nav__middle-links__show-header">
+                                        <h3>3legant</h3>
+                                        <button onClick={() => setShowSidebar(false)}><IoClose /></button>
+                                    </div>
+                                    : <></>
                             }
                             <NavLink onClick={() => setShowSidebar(false)} to={"/"}>Home {showSidebar ? <span><MdKeyboardArrowRight /></span> : <></>}</NavLink>
                             <NavLink onClick={() => setShowSidebar(false)} to={"/shop"}>Shop {showSidebar ? <span><MdKeyboardArrowRight /></span> : <></>}</NavLink>
                             <NavLink onClick={() => setShowSidebar(false)} to={"/blog"}>Blog {showSidebar ? <span><MdKeyboardArrowRight /></span> : <></>}</NavLink>
                             <NavLink onClick={() => setShowSidebar(false)} to={"/contact"}>Contact Us {showSidebar ? <span><MdKeyboardArrowRight /></span> : <></>}</NavLink>
+                            {
+                                showSidebar
+                                    ?
+                                    <div className="nav__middle-links__show-bottom">
+                                        <Link onClick={() => setShowSidebar(false)} to={"/cart/shopping"}>Cart <span><CgShoppingBag /></span></Link>
+                                        <Link onClick={() => setShowSidebar(false)} to={"/wishlist"}>Wishlist <span><GoHeart /></span></Link>
+                                        <button onClick={() => {
+                                            navigate("/admin/manageProducts")
+                                            setShowSidebar(false)
+                                        }
+                                        }>Sing in</button>
+                                    </div>
+                                    :
+                                    <></>
+                            }
                         </div>
                     </div>
                     <div className="nav__bottom">
-                        <form className='nav__bottom-form' onSubmit={handleSubmit} action="">
-                            <input className={`nav__bottom-form__input ${showSearch ? "nav__bottom-form__show" : ""}`} value={search} onChange={(e) => setSearch(e.target.value)} name='search' type="text" placeholder='Search' />
-                            <button type='button' onClick={() => setShowSearch(prev => !prev)}><RiSearchLine /></button>
-                        </form>
-                        <NavLink to={"/admin"}><MdOutlineAccountCircle /></NavLink>
+                        <button type='button' onClick={() => setShowSearch(true)}><RiSearchLine /></button>
+                        <NavLink className={`hide`} to={"/admin/manageProducts"}><MdOutlineAccountCircle /></NavLink>
                         <NavLink to={"/cart/shopping"}><CgShoppingBag /></NavLink>
-                        <NavLink to={"/wishlist"}><GoHeart /></NavLink>
+                        <NavLink className={`hide`} to={"/wishlist"}><GoHeart /></NavLink>
                     </div>
                 </nav>
                 {
                     showSidebar
                         ?
                         <div onClick={() => setShowSidebar(false)} className="overlay"></div>
+                        :
+                        <></>
+                }
+
+                {
+                    showSearch
+                        ?
+                        <div className='search__form'>
+
+                            <div className="search__form__wrapper container">
+                                <input type="" placeholder='Search Something' />
+                                <button type='button' onClick={() => setShowSearch(false)}>Hide Search</button>
+                            </div>
+                        </div>
                         :
                         <></>
                 }

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: JSON.parse(localStorage.getItem("cart")) || [],
-  checked: false
+  checked: JSON.parse(localStorage.getItem("ischecked")) || false
 };
 
 const cartSlice = createSlice({
@@ -37,6 +37,7 @@ const cartSlice = createSlice({
     },
     isChecked: (state, action) => {
       state.checked = action.payload
+      localStorage.setItem("ischecked", JSON.stringify(state.checked))
     },
   },
 });

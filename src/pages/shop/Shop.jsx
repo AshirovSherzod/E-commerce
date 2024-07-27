@@ -16,7 +16,7 @@ const Shop = () => {
           <p>Let’s design the place you always imagined.</p>
         </div>
       </div>
-      <Products data={data} />
+      <Products data={data} limit={8}/>
     </main>
   )
 }

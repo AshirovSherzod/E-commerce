@@ -8,6 +8,7 @@ import ShoppingCart from './shoppingCart/ShoppingCart'
 import Checkout from './checkout/Checkout'
 import OrderComplete from './orderComplete/OrderComplete'
 import { Outlet, useLocation } from 'react-router-dom'
+import img1 from '../../assets/images/cart.webp'
 
 const Cart = () => {
 
@@ -19,7 +20,7 @@ const Cart = () => {
   let index = pathnames.findIndex(text => text === pathname)
 
   let abtab1 = localStorage.getItem("abtab")
-  console.log(abtab1);
+
 
   return (
     <main className='cart container'>
@@ -89,7 +90,7 @@ const Cart = () => {
             </div>
           </>
           :
-          <Empty title={"Salom"} />
+          <Empty img={img1} />
       }
     </main>
   )

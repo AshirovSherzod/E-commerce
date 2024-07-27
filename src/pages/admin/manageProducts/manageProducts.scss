@@ -1,0 +1,76 @@
+.manage-products {
+    // margin-left: 300px;
+    width: calc(100vw - 320px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+
+    &__top {
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #454545;
+        }
+
+        button {
+            height: 40px;
+            width: 120px;
+            background-color: #232627;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            color: #fff;
+        }
+    }
+
+    &__form {
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        &__input {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            label {
+                font-size: 14px;
+                color: #6C7275;
+            }
+
+            input {
+                height: 40px;
+                border: 1px solid #CBCBCB;
+                border-radius: 5px;
+                padding-left: 20px;
+                outline: none;
+            }
+
+            textarea {
+                height: 100px;
+                padding: 20px;
+                border: 1px solid #CBCBCB;
+                border-radius: 5px;
+                resize: none;
+                outline: none;
+            }
+        }
+
+        button {
+            height: 40px;
+            color: #fff;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            background-color: #232627;
+        }
+    }
+
+}

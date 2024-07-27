@@ -1,24 +1,37 @@
 import React from 'react'
 
 import './footer.scss'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { FaInstagram } from 'react-icons/fa'
 import { LuFacebook } from 'react-icons/lu'
 import { TbBrandYoutube } from 'react-icons/tb'
 import { MdOutlineEmail } from 'react-icons/md'
 
 const Footer = () => {
+
+  let { pathname } = useLocation()
+
+  if (pathname.includes("/sign-in")) return <></>
+  if (pathname.includes("/admin")) return <></>
+
   return (
     <>
-      <div className="sub-footer">
-        <h1>Join Our Newsletter</h1>
-        <p>Sign up for deals, new products and promotions</p>
-        <form action="">
-          <button type='button'><MdOutlineEmail /></button>
-          <input type="text" placeholder='Email address' />
-          <button>Signup</button>
-        </form>
-      </div>
+      {
+        pathname.includes("/cart") || pathname.includes("/contact") 
+          ?
+          <></>
+          :
+          <div className="sub-footer">
+            <h1>Join Our Newsletter</h1>
+            <p>Sign up for deals, new products and promotions</p>
+            <form action="">
+              <button type='button'><MdOutlineEmail /></button>
+              <input type="text" placeholder='Email address' />
+              <button>Signup</button>
+            </form>
+          </div>
+
+      }
       <footer className='footer'>
         <div className="footer__wrapper container">
           <div className="footer__top">
