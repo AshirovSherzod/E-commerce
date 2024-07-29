@@ -2,15 +2,20 @@ import React from 'react'
 import { IoClose } from 'react-icons/io5'
 
 import './shoppingCart.scss'
-import { useDispatch } from 'react-redux'
-import { removeFromCart } from '../../../context/slices/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, decrementCart, removeFromCart } from '../../../context/slices/cartSlice'
 import { useNavigate, useOutletContext } from 'react-router-dom'
+import { FaMinus, FaPlus } from 'react-icons/fa'
+
+const formatter = Intl.NumberFormat('en')
 
 const ShoppingCart = () => {
 
     let dispatch = useDispatch()
     let navigate = useNavigate()
     let { data } = useOutletContext()
+    let cartData = useSelector(state => state.cart.value)
+    console.log(data);
 
 
     let carts = data.map(el => (
@@ -23,16 +28,24 @@ const ShoppingCart = () => {
                     <div className="shopping-cart__cart-title">
                         <h3 className='line-clamp'>{el.title}</h3>
                         <button className='remove' onClick={() => dispatch(removeFromCart(el.id))}><IoClose /></button>
-                        <button>Counter</button>
+                        <div className="shopping-cart__cart-counter">
+                            <button onClick={() => dispatch(addToCart(el))}>{<FaPlus />}</button>
+                            <button>{el.stock}</button>
+                            <button onClick={() => dispatch(decrementCart(el))}><FaMinus /></button>
+                        </div>
                     </div>
                 </div>
             </td>
             <td>
-                <button>Counter</button>
+                <div className="shopping-cart__cart-counter">
+                    <button onClick={() => dispatch(addToCart(el))}>{<FaPlus />}</button>
+                    <button>{el.stock}</button>
+                    <button onClick={() => dispatch(decrementCart(el))}><FaMinus /></button>
+                </div>
             </td>
             <td>{el.price}</td>
             <td>
-                {el.price}
+                {formatter.format(el.price * el.stock)}
                 <button className='remove-two' onClick={() => dispatch(removeFromCart(el.id))}><IoClose /></button>
             </td>
         </tr>
