@@ -102,7 +102,7 @@ const Details = () => {
             <div className="details__product-details">
               <div className="details__product-details__title">
                 <p className='rating'>{getRating(data?.rating)}</p>
-                <h1>{data?.title}</h1>
+                <h1 title={data?.title} className='line-clamp2'>{data?.title}</h1>
                 <p className='desc'>{data?.description}</p>
                 <div className="details__product-details__title-price">
                   <p>${data?.price}</p>

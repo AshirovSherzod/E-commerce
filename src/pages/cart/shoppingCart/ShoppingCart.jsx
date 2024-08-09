@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 
 import './shoppingCart.scss'
@@ -14,6 +14,7 @@ const ShoppingCart = () => {
     let dispatch = useDispatch()
     let navigate = useNavigate()
     let { data } = useOutletContext()
+    const [price, setPrice] = useState(0)
     let cartData = useSelector(state => state.cart.value)
     console.log(data);
 
@@ -84,16 +85,14 @@ const ShoppingCart = () => {
                 </form>
                 <div className="shopping-cart__right-total">
                     <p>Subtotal <span>$1234.0</span></p>
-                    <h3>Total <span>$1234.0</span></h3>
+                    <h3>Total <span>{price}</span></h3>
                 </div>
                 <button className='checkoutt' onClick={() => {
-                    // setAbtab(2)
-                    // localStorage.setItem("abtab", JSON.stringify(2))
                     navigate("/cart/checkout")
                 }}>Checkout</button>
-            </div>
+            </div >
 
-        </div>
+        </div >
     )
 }
 
