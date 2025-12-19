@@ -1,99 +1,77 @@
-import React, { useState } from 'react'
-
-import './cart.scss'
-import { useSelector } from 'react-redux'
-import Empty from '../../components/empty/Empty'
-import { MdDone } from 'react-icons/md'
-import ShoppingCart from './shoppingCart/ShoppingCart'
-import Checkout from './checkout/Checkout'
-import OrderComplete from './orderComplete/OrderComplete'
-import { Outlet, useLocation } from 'react-router-dom'
-import img1 from '../../assets/images/cart.webp'
+import "./cart.scss";
+import { useSelector } from "react-redux";
+import Empty from "../../components/empty/Empty";
+import { MdDone } from "react-icons/md";
+import { Outlet, useLocation } from "react-router-dom";
+import img1 from "../../assets/images/cart.webp";
 
 const Cart = () => {
-
-  const cartData = useSelector(state => state.cart.value)
-  // const [abtab, setAbtab] = useState(1)
-  const pathnames = ["shopping", "checkout", "orderComplete"]
-  let { pathname } = useLocation()
-  pathname = pathname.split("/")[2]
-  let index = pathnames.findIndex(text => text === pathname)
-
-  let abtab1 = localStorage.getItem("abtab")
-
+  const cartData = useSelector((state) => state.cart.value);
+  const pathnames = ["shopping", "checkout", "orderComplete"];
+  const { pathname } = useLocation();
+  const pathnameValue = pathname.split("/")[2];
+  const index = pathnames.findIndex((text) => text === pathnameValue);
 
   return (
-    <main className='cart container'>
-      {
-        cartData.length
-          ?
-          <>
-            <div className="cart__header">
-              <h1>Cart</h1>
-              <div className="cart__header-tabs">
-                <div className={`cart__header-tabs__one ${index === 0 ? "active" : ""} ${index > 0 ? "done" : ""}`}>
-                  <div className={`cart__header-tabs__one-icon ${index === 0 ? "active" : ""} ${index > 0 ? "done" : ""}`}>
-                    {
-                      index > 0
-                        ?
-                        <MdDone />
-                        :
-                        1
-                    }
-                  </div>
-                  <h2>Shopping cart</h2>
+    <main className="cart container">
+      {cartData.length ? (
+        <>
+          <div className="cart__header">
+            <h1>Cart</h1>
+            <div className="cart__header-tabs">
+              <div
+                className={`cart__header-tabs__one ${
+                  index === 0 ? "active" : ""
+                } ${index > 0 ? "done" : ""}`}
+              >
+                <div
+                  className={`cart__header-tabs__one-icon ${
+                    index === 0 ? "active" : ""
+                  } ${index > 0 ? "done" : ""}`}
+                >
+                  {index > 0 ? <MdDone /> : 1}
                 </div>
-                <div className={`cart__header-tabs__two ${index === 1 ? "active" : ""} ${index > 1 ? "done" : ""}`}>
-                  <div className={`cart__header-tabs__two-icon ${index === 1 ? "active" : ""} ${index > 1 ? "done" : ""}`}>
-                    {
-                      index > 1
-                        ?
-                        <MdDone />
-                        :
-                        2
-                    }
-                  </div>
-                  <h2>Checkout details</h2>
+                <h2>Shopping cart</h2>
+              </div>
+              <div
+                className={`cart__header-tabs__two ${
+                  index === 1 ? "active" : ""
+                } ${index > 1 ? "done" : ""}`}
+              >
+                <div
+                  className={`cart__header-tabs__two-icon ${
+                    index === 1 ? "active" : ""
+                  } ${index > 1 ? "done" : ""}`}
+                >
+                  {index > 1 ? <MdDone /> : 2}
                 </div>
-                <div className={`cart__header-tabs__three ${index === 2 ? "active" : ""}`}>
-                  <div className={`cart__header-tabs__three-icon ${index === 2 ? "active" : ""}`}>
-                    {
-                      index > 2
-                        ?
-                        <MdDone />
-                        :
-                        3
-                    }
-                  </div>
-                  <h2>Order Complete</h2>
+                <h2>Checkout details</h2>
+              </div>
+              <div
+                className={`cart__header-tabs__three ${
+                  index === 2 ? "active" : ""
+                }`}
+              >
+                <div
+                  className={`cart__header-tabs__three-icon ${
+                    index === 2 ? "active" : ""
+                  }`}
+                >
+                  {index > 2 ? <MdDone /> : 3}
                 </div>
+                <h2>Order Complete</h2>
               </div>
             </div>
-            <div className="cart__body">
-              <Outlet context={{ data: cartData }} />
-              {/* {
-                abtab === 1
-                  ?
-                  <ShoppingCart data={cartData} setAbtab={setAbtab} />
-                  :
-                  abtab === 2
-                    ?
-                    <Checkout data={cartData} setAbtab={setAbtab} />
-                    :
-                     ${abtab1 > 3 ? "done" : ""}
-                    abtab === 3
-                      ?
-                      <OrderComplete />
-                      :
-                      <></>
-              } */}
-            </div>
-          </>
-          :
-          <Empty img={img1} />
-      }
+          </div>
+          <div className="cart__body">
+            <Outlet context={{ data: cartData }} />
+          </div>
+        </>
+      ) : (
+        <Empty img={img1} />
+      )}
     </main>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

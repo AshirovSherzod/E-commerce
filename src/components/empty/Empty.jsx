@@ -1,13 +1,11 @@
-import React from 'react'
-
-import './empty.scss'
+import "./empty.scss";
 
 const Empty = ({ img }) => {
-    return (
-        <div className="empty">
-            <img src={img} alt="" />
-        </div>
-    )
-}
+  return (
+    <div className="empty">
+      <img src={img} alt="" />
+    </div>
+  );
+};
 
-export default Empty
+export default Empty;

@@ -1,28 +1,24 @@
-import React from 'react'
 import ProductsItem from './ProductsItem'
-
 import './products.scss'
 import { BsArrowRight } from 'react-icons/bs'
-import { CiDeliveryTruck, CiLock, CiMoneyCheck1 } from 'react-icons/ci'
-import { FiPhone } from 'react-icons/fi'
 import { useLocation } from 'react-router-dom'
 import ProductBottom from '../productBottom/ProductBottom'
+import PropTypes from 'prop-types'
 
-const Products = ({ data, isLoading, isSuccess, limit }) => {
+const Products = ({ data, isLoading, limit }) => {
+    const { pathname } = useLocation()
 
-    let { pathname } = useLocation()
+    const pathAdmin = pathname.includes("/admin")
 
-    let pathAdmin = pathname.includes("/admin")
-
-    let products = data?.map(product => (
+    const products = data?.map(product => (
         <ProductsItem key={product.id} data={product} />
     ))
 
     const loading = (limit) => {
-        let arr = []
+        const arr = []
         for (let i = 0; i < limit; i++) {
             arr.push(
-                <div className="products__loading-card">
+                <div key={i} className="products__loading-card">
                     <div className="products__loading-card__img"></div>
                     <div className="products__loading-card__title">
                         <div className="products__loading-card__title-desc"></div>
@@ -82,6 +78,12 @@ const Products = ({ data, isLoading, isSuccess, limit }) => {
             }
         </div>
     )
+}
+
+Products.propTypes = {
+    data: PropTypes.array,
+    isLoading: PropTypes.bool,
+    limit: PropTypes.number
 }
 
 export default Products
