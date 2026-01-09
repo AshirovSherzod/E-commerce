@@ -8,8 +8,10 @@ import "./hero.scss";
 import swiper1 from "../../assets/images/hero-swiper1.png";
 import swiper2 from "../../assets/images/hero-swiper2.jpg";
 import swiper3 from "../../assets/images/hero-swiper3.webp";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
   return (
     <section className="hero container">
       <Swiper
@@ -30,8 +32,10 @@ const Hero = () => {
       </Swiper>
       <div className="hero__bottom">
         <h1>
-          Simply Unique<span>/</span> <br />
-          Simply Better<span>.</span>
+          {t("simply_unique")}
+          <span>/</span> <br />
+          {t("simply_better")}
+          <span>.</span>
         </h1>
         <p>
           <span>3legant</span> is a gift & decorations store based in <br />{" "}

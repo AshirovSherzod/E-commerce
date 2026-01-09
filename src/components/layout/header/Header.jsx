@@ -8,6 +8,7 @@ import { CgShoppingBag } from "react-icons/cg";
 import { RiSearchLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -15,10 +16,10 @@ const Header = () => {
   const [search, setSearch] = useState("");
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle search submission
     setShowSearch(false);
   };
 
@@ -61,28 +62,32 @@ const Header = () => {
                 </div>
               ) : null}
               <NavLink onClick={() => setShowSidebar(false)} to="/">
-                Home{showSidebar && (
+                {t("home")}
+                {showSidebar && (
                   <span>
                     <MdKeyboardArrowRight />
                   </span>
                 )}
               </NavLink>
               <NavLink onClick={() => setShowSidebar(false)} to="/shop">
-                Shop{showSidebar && (
+                {t("shop")}
+                {showSidebar && (
                   <span>
                     <MdKeyboardArrowRight />
                   </span>
                 )}
               </NavLink>
               <NavLink onClick={() => setShowSidebar(false)} to="/blog">
-                Blog{showSidebar && (
+                {t("blog")}
+                {showSidebar && (
                   <span>
                     <MdKeyboardArrowRight />
                   </span>
                 )}
               </NavLink>
               <NavLink onClick={() => setShowSidebar(false)} to="/contact">
-                Contact Us{showSidebar && (
+                {t("contact")}
+                {showSidebar && (
                   <span>
                     <MdKeyboardArrowRight />
                   </span>
@@ -121,7 +126,11 @@ const Header = () => {
             <button type="button" onClick={() => setShowSearch(true)}>
               <RiSearchLine />
             </button>
-            <NavLink className="hide" to="/admin/manageProducts" aria-label="Account">
+            <NavLink
+              className="hide"
+              to="/admin/manageProducts"
+              aria-label="Account"
+            >
               <MdOutlineAccountCircle />
             </NavLink>
             <NavLink to="/cart/shopping" aria-label="Shopping cart">
